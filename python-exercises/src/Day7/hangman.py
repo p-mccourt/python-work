@@ -23,14 +23,16 @@ def create_blank_spaces(word):
 display = create_blank_spaces(chosen_word)
 
 
-# function to check if users guess letter is in the chosen word
+# function to check if users guess letter is in the chosen word, prints the letters to screen
 def contains_guess_letter(word, letter_guess, letter_list):
     list_pos = 0
     for letter in word:
         if letter_guess == letter:
-            letter_list
-            list_pos += 1
+            letter_list[list_pos] = letter_guess
+        list_pos += 1
     print(letter_list)
+    create_blank_spaces(letter_list)
 
 
 contains_guess_letter(chosen_word, guess, display)
+
