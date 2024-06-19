@@ -2,37 +2,31 @@
 import random
 
 word_list = ["aardvark", "baboon", "camel"]
+word_guessed = False
 
 # choose random word from word list
 chosen_word = random.choice(word_list)
 
+# populate a list with the chosen word
+letter_list = []
+for letter in chosen_word:
+    letter_list.append("_")
+
 print(f"Word is: {chosen_word}")
 
-# ask user to guess a letter
-guess = input("Guess a letter\n").lower()
+# print initial blank letter list for user
+print(letter_list)
 
-
-# populate a blank display list with chosen word spaces
-def create_blank_spaces(word):
-    blank_list = []
-    for letter in word:
-        blank_list.append("_")
-    return blank_list
-
-
-display = create_blank_spaces(chosen_word)
-
-
-# function to check if users guess letter is in the chosen word, prints the letters to screen
-def contains_guess_letter(word, letter_guess, letter_list):
-    list_pos = 0
-    for letter in word:
-        if letter_guess == letter:
-            letter_list[list_pos] = letter_guess
-        list_pos += 1
+while not word_guessed:
+    # ask user to guess a letter
+    guess = input("Guess a letter\n").lower()
+    for i in range(len(chosen_word)):
+        if chosen_word[i] == guess:
+            letter_list[i] = guess
     print(letter_list)
-    create_blank_spaces(letter_list)
 
+    # check win condition, if fulfilled exit the    loop
+    if "_" not in letter_list:
+        word_guessed = True
 
-contains_guess_letter(chosen_word, guess, display)
-
+print("You guessed the word! Congrats!")
